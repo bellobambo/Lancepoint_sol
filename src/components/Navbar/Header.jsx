@@ -11,11 +11,9 @@ const useIsMobile = (breakpoint = 768) => {
 
   useEffect(() => {
     const mediaQuery = window.matchMedia(`(max-width: ${breakpoint}px)`);
-
     const handleChange = (e) => setIsMobile(e.matches);
 
     setIsMobile(mediaQuery.matches);
-
     mediaQuery.addEventListener("change", handleChange);
 
     return () => mediaQuery.removeEventListener("change", handleChange);
@@ -27,7 +25,6 @@ const useIsMobile = (breakpoint = 768) => {
 const Header = () => {
   const router = useRouter();
   const { isConnected } = useWallet();
-  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (isConnected) {
@@ -35,11 +32,9 @@ const Header = () => {
     }
   }, [isConnected, router]);
 
-  // Your existing header JSX below
   return (
-    <header className="py-4 px-4 sm:px-6 md:px-12 lg:px-20">
-      <div className="flex items-center justify-between">
-        {/* Logo */}
+    <header className="py-4 px-4 sm:px-6 md:px-12 lg:px-20 shadow-md">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0">
         <div className="flex items-center">
           <Image
             src="/icons/logo.svg"
@@ -50,21 +45,16 @@ const Header = () => {
           />
           <a
             href="/"
-            className="ml-2 plus-jakarta-sans-myf font-bold text-3xl sm:text-lg text-black"
-            style={{ fontSize: "30px" }}
+            className="ml-2 font-bold text-xl sm:text-2xl text-black plus-jakarta-sans-myf"
           >
             Lancepoint
           </a>
         </div>
 
-        {!isMobile && <SolflareConnectButton />}
-
-        <div className="md:hidden ml-auto">
-          {/* mobile menu toggle button, etc */}
+        <div className="self-start sm:self-auto">
+          <SolflareConnectButton />
         </div>
       </div>
-
-      {/* mobile menu if open */}
     </header>
   );
 };
