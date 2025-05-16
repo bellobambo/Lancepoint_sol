@@ -28,35 +28,34 @@ const SwapModal = () => {
 
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
-          <div
-            className="relative bg-white/95 rounded-lg shadow-2xl border-2 border-black overflow-hidden w-full max-w-md"
-            style={{ height: "fit-content", maxHeight: "80vh" }}
-          >
-            <div className="flex items-center justify-between p-4 border-b-2 border-black">
-              <h3 className="text-xl font-semibold text-gray-800">
-                Cross-Chain Swap
-              </h3>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="text-gray-500 hover:text-gray-700 text-2xl transition-colors cursor-pointer"
-              >
-                &times;
-              </button>
-            </div>
+  <div
+    className="relative bg-white rounded-lg shadow-2xl border-2 border-black overflow-hidden w-full max-w-md text-black"
+    style={{ maxHeight: "80vh" }}
+  >
+    <div className="flex items-center justify-between p-4 border-b-2 border-black">
+      <h3 className="text-xl font-semibold">Cross-Chain Swap</h3>
+      <button
+        onClick={() => setIsOpen(false)}
+        className="hover:text-gray-700 text-2xl transition-colors cursor-pointer"
+      >
+        &times;
+      </button>
+    </div>
 
-            <div
-              className="p-4"
-              style={{ height: "calc(80vh - 120px)", overflow: "hidden" }}
-            >
-              <WormholeConnect config={config} />
-            </div>
+    {/* Scrollable content */}
+    <div
+      className="p-4 overflow-y-auto"
+      style={{ maxHeight: "calc(80vh - 160px)" }} // Adjust height to allow header/footer space
+    >
+      <WormholeConnect config={config} />
+    </div>
 
-            <div className="p-4 border-t-2 border-black text-center text-sm text-gray-500">
-              Powered by{" "}
-              <span className="font-medium text-purple-600">Wormhole</span>
-            </div>
-          </div>
-        </div>
+    <div className="p-4 border-t-2 border-black text-center text-sm">
+      Powered by{" "}
+      <span className="font-medium text-purple-600">Wormhole</span>
+    </div>
+  </div>
+</div>
       )}
     </div>
   );
