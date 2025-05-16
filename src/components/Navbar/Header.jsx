@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { WalletComponent } from "../ConnectWallet";
+
 import { useRouter } from "next/navigation";
+import SolflareConnectButton from "../ConnectWallet";
 
 const WALLET_KEY = "-walletlink:https://www.walletlink.org:Addresses";
 
@@ -66,7 +67,7 @@ const Header = () => {
           </a>
         </div>
 
-        {!isMobile && <WalletComponent />}
+        {!isMobile && <SolflareConnectButton />}
 
         <div className="md:hidden ml-auto">
           <button
@@ -111,7 +112,7 @@ const Header = () => {
       {isMenuOpen && isMobile && (
         <div className="md:hidden mt-4 py-2">
           <nav className="flex flex-col space-y-3">
-            <WalletComponent />
+            <SolflareConnectButton />
           </nav>
         </div>
       )}

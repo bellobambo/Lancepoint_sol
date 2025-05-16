@@ -3,8 +3,7 @@
 import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { WalletAdvancedDefault } from "@coinbase/onchainkit/wallet";
-import { WalletIsland } from "@coinbase/onchainkit/wallet";
+import SolflareConnectButton from "./ConnectWallet";
 
 const shortenAddress = (address) => {
   return address ? `${address.slice(0, 6)}...${address.slice(-4)}` : "";
@@ -104,8 +103,7 @@ const Navbar = () => {
           )}
         </div>
 
-        <WalletAdvancedDefault />
-        <WalletIsland />
+        <SolflareConnectButton />
       </div>
     </header>
   );
