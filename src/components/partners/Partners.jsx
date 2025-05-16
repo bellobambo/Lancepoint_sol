@@ -12,25 +12,24 @@ const Partners = () => {
           {/* BASE */}
 
           <div className="flex items-center gap-3 grayscale hover:grayscale-0 transition duration-300">
-            <div className="relative">
+            <div className="relative  flex items-center gap-2">
               <Image
-                src="/Base_Wordmark_Black 1.png"
-                alt="BASE"
-                width={100}
-                height={100}
+                src="/superteam.png"
+                alt="Super Team"
+                width={35}
+                height={35}
               />
+              <span className="font-bold uppercase text-purple-600">
+                {" "}
+                Super Team
+              </span>
             </div>
           </div>
 
           <div className="flex items-center gap-3 grayscale hover:grayscale-0 transition duration-300">
             {/* Uncomment and replace src when ready */}
-            <div className="relative">
-              <Image
-                src="/Based Africa.png"
-                width={100}
-                height={100}
-                alt="BASED AFRICA"
-              />
+            <div className="relative  flex items-center gap-2">
+              <Image src="/Solana1.png" width={120} height={120} alt="Solana" />
             </div>
           </div>
 
@@ -39,8 +38,17 @@ const Partners = () => {
           {/* ENB */}
           <div className="flex items-center gap-3 grayscale hover:grayscale-0 transition duration-300">
             {/* Uncomment and replace src when ready */}
-            <div className="relative ">
-              <Image src="/ENB.png" width={100} height={100} alt="ENB" />
+            <div className="relative  flex items-center gap-2">
+              <Image
+                src="/wormhole.png"
+                width={35}
+                height={35}
+                alt="Wormhole"
+              />
+              <span className="font-bold uppercase text-purple-600">
+                {" "}
+                Wormhole
+              </span>
             </div>
           </div>
         </div>

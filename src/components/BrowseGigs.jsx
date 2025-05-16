@@ -104,72 +104,83 @@ const BrowseGigs = () => {
 
   return (
     <div className="px-4">
-      {gigs.map((gig) => {
-        const isOwner = gig.userId === wallet;
+      {gigs.length === 0 ? (
+        <div className="flex flex-col items-center justify-center h-64">
+          <p className="text-gray-600 text-lg">
+            No new gigs available at the moment.
+          </p>
+          <p className="text-gray-500 text-sm mt-2">
+            Check back later for new opportunities!
+          </p>
+        </div>
+      ) : (
+        gigs.map((gig) => {
+          const isOwner = gig.userId === wallet;
 
-        return (
-          <div key={gig._id} className="flex justify-center mt-10 mb-10">
-            <div className="bg-white p-6 md:p-8 rounded-lg shadow-md space-y-6 w-full max-w-4xl">
-              <div className="text-2xl font-semibold text-left">
-                {gig.jobTitle}
-              </div>
-
-              <div className="flex items-center space-x-2">
-                <div className="p-2 bg-black text-white w-[9rem] text-[12px] text-center rounded-4xl font-medium">
-                  {gig.services?.[0] || "Service"}
+          return (
+            <div key={gig._id} className="flex justify-center mt-10 mb-10">
+              <div className="bg-white p-6 md:p-8 rounded-lg shadow-md space-y-6 w-full max-w-4xl">
+                <div className="text-2xl font-semibold text-left">
+                  {gig.jobTitle}
                 </div>
-                <div className="p-2  bg-[#337936] text-white w-[9rem] text-[12px] text-center rounded-4xl font-medium">
-                  {gig.payment?.amount} {gig.payment?.token}
-                </div>
-                <div className="p-2   bg-black text-white w-[12rem] text-[12px] text-center rounded-4xl font-medium">
-                  {gig.startDate} - {gig.endDate}
-                </div>
-              </div>
 
-              <p className="font-medium text-[12px] text-gray-500">
-                {gig.jobDescription}
-              </p>
-
-              <div className="flex items-center space-x-2">
-                {gig.services?.map((service, i) => (
-                  <div
-                    key={i}
-                    className="p-2  bg-black text-white w-[9rem] text-[12px] text-center rounded-4xl font-medium"
-                  >
-                    {service}
+                <div className="flex items-center space-x-2">
+                  <div className="p-2 bg-black text-white w-[9rem] text-[12px] text-center rounded-4xl font-medium">
+                    {gig.services?.[0] || "Service"}
                   </div>
-                ))}
-              </div>
-
-              <div className="flex justify-start items-center">
-                <div
-                  onClick={() => handleViewMilestones(gig.milestones)}
-                  className="p-2  bg-black text-white w-[9rem] text-[14px] text-center rounded-4xl font-[600] cursor-pointer"
-                >
-                  View Milestones
+                  <div className="p-2 bg-[#337936] text-white w-[9rem] text-[12px] text-center rounded-4xl font-medium">
+                    {gig.payment?.amount} {gig.payment?.token}
+                  </div>
+                  <div className="p-2 bg-black text-white w-[12rem] text-[12px] text-center rounded-4xl font-medium">
+                    {gig.startDate} - {gig.endDate}
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex justify-start items-center">
-                <div
-                  onClick={() => handleApplyClick(gig)}
-                  className={`p-3 w-[9rem] text-[14px] shadow-md text-center rounded-4xl font-[600] ${
-                    isOwner
-                      ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                      : "bg-white text-black cursor-pointer"
-                  }`}
-                  style={{
-                    pointerEvents: isOwner ? "none" : "auto",
-                    opacity: isOwner ? 0.5 : 1,
-                  }}
-                >
-                  Apply
+                <p className="font-medium text-[12px] text-gray-500">
+                  {gig.jobDescription}
+                </p>
+
+                <div className="flex items-center space-x-2">
+                  {gig.services?.map((service, i) => (
+                    <div
+                      key={i}
+                      className="p-2 bg-black text-white w-[9rem] text-[12px] text-center rounded-4xl font-medium"
+                    >
+                      {service}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex justify-start items-center">
+                  <div
+                    onClick={() => handleViewMilestones(gig.milestones)}
+                    className="p-2 bg-black text-white w-[9rem] text-[14px] text-center rounded-4xl font-[600] cursor-pointer"
+                  >
+                    View Milestones
+                  </div>
+                </div>
+
+                <div className="flex justify-start items-center">
+                  <div
+                    onClick={() => handleApplyClick(gig)}
+                    className={`p-3 w-[9rem] text-[14px] shadow-md text-center rounded-4xl font-[600] ${
+                      isOwner
+                        ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                        : "bg-white text-black cursor-pointer"
+                    }`}
+                    style={{
+                      pointerEvents: isOwner ? "none" : "auto",
+                      opacity: isOwner ? 0.5 : 1,
+                    }}
+                  >
+                    Apply
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })
+      )}
 
       {/* Milestones Modal */}
       {showMilestoneModal && (

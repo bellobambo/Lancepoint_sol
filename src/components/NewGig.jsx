@@ -3,24 +3,17 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import {
-  Address,
-  Avatar,
-  Name,
-  Identity,
-  EthBalance,
-} from "@coinbase/onchainkit/identity";
 
-async function fetchEthToUsdRate() {
+async function fetchSolToUsdRate() {
   try {
     const response = await fetch(
-      "https://api.coinbase.com/v2/exchange-rates?currency=ETH"
+      "https://api.coinbase.com/v2/exchange-rates?currency=SOL"
     );
     const data = await response.json();
     return data.data.rates?.USD ? parseFloat(data.data.rates.USD) : 0.5;
   } catch (error) {
-    console.error("Error fetching ETH price from Coinbase:", error);
-    return 0.5;
+    console.error("Error fetching SOL price from Coinbase:", error);
+    return 0.5; // fallback rate
   }
 }
 
@@ -55,7 +48,7 @@ export default function NewGig() {
   });
 
   useEffect(() => {
-    fetchEthToUsdRate().then((rate) => setEthRate(rate));
+    fetchSolToUsdRate().then((rate) => setEthRate(rate));
   }, []);
 
   useEffect(() => {
@@ -304,14 +297,14 @@ export default function NewGig() {
             <label className="font-medium text-[14px] block">Token</label>
             <input
               name="payment.token"
-              value={formData.payment.token}
+              value="SOL"
               readOnly
               className="w-full p-5 border border-[#ACACAC] rounded-md mt-2 bg-gray-100"
             />
           </div>
           <div>
             <label className="font-medium text-[14px] block">
-              Amount (ETH)
+              Amount (SOL)
             </label>
             <input
               name="payment.amount"
