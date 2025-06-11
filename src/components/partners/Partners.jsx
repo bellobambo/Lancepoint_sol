@@ -19,10 +19,7 @@ const Partners = () => {
                 width={35}
                 height={35}
               />
-              <span className="font-bold uppercase text-purple-600">
-                {" "}
-                Super Team
-              </span>
+              <span className="font-bold  text-purple-600"> Superteam</span>
             </div>
           </div>
 
